@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felipe & Michelle · 10.09.2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2c3e5a;
+    --navy-light: #3d5070;
+    --cream: #f5f0e8;
+    --cream-dark: #ede6d6;
+    --gold: #c9a84c;
+    --gold-light: #e0c070;
+    --white: #fefefe;
+    --text-dark: #1a2535;
+    --text-mid: #4a5568;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d0cdc8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .phone-wrap {
+    width: 390px;
+    max-width: 100%;
+    background: var(--cream);
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  }
+
+  /* ---- COVER ---- */
+  .cover {
+    background: var(--navy);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 30px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  }
+
+  .floral-deco {
+    position: absolute;
+    width: 170px;
+    opacity: 0.5;
+  }
+  .floral-deco.top-left { top: -10px; left: -10px; }
+  .floral-deco.bottom-right { bottom: -10px; right: -10px; transform: rotate(180deg); }
+
+  .names {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    margin-top: 16px;
+  }
+  .names .name { font-size: 48px; font-weight: 400; font-style: italic; line-height: 1.1; }
+  .names .ampersand { font-size: 38px; color: var(--gold); font-style: italic; margin: 4px 0; display: block; }
+
+  .cover-date {
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    position: relative; z-index: 1;
+  }
+
+  .initials-badge {
+    width: 66px; height: 66px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin: 20px auto 0;
+    position: relative; z-index: 1;
+    background: rgba(201,168,76,0.06);
+  }
+
+  .nos-casamos {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--cream);
+    margin-top: 10px;
+    position: relative; z-index: 1;
+  }
+
+  /* ---- PHOTO ---- */
+  .photo-section {
+    background: var(--cream);
+    padding: 30px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .photo-frame {
+    width: 100%;
+    height: 210px;
+    background: linear-gradient(135deg, #e8e4dc, #d8d2c8);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(44,62,90,0.15);
+  }
+
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+  .photo-placeholder { text-align: center; color: var(--navy); opacity: 0.45; }
+  .photo-placeholder svg { width: 44px; height: 44px; margin-bottom: 8px; }
+  .photo-placeholder p { font-size: 11px; }
+
+  .verse-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    padding: 0 8px;
+  }
+  .verse-ref {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* ---- COUNTDOWN ---- */
+  .countdown-section {
+    background: var(--white);
+    padding: 30px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .big-date-row {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin: 4px 0 16px;
+  }
+  .big-date { font-family: 'Playfair Display', serif; font-size: 56px; color: var(--navy); line-height: 1; }
+  .day-label { font-size: 11px; letter-spacing: 3px; color: var(--text-mid); text-transform: uppercase; }
+
+  .faltan-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .countdown-timer { display: flex; gap: 0; justify-content: center; }
+  .timer-unit { text-align: center; padding: 0 8px; }
+  .timer-unit .num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--navy); font-weight: 700; line-height: 1; }
+  .timer-unit .unit-label { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; color: var(--text-mid); text-transform: uppercase; display: block; margin-top: 4px; }
+  .timer-sep { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--navy); line-height: 1.1; opacity: 0.5; }
+
+  .gran-dia {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--navy);
+    margin: 24px 0 14px;
+  }
+
+  .calendar { width: 100%; border-collapse: collapse; font-family: 'Montserrat', sans-serif; font-size: 11px; }
+  .calendar th { color: var(--text-mid); text-transform: uppercase; font-size: 9px; letter-spacing: 1px; padding: 5px; font-weight: 500; }
+  .calendar td { padding: 6px; text-align: center; color: var(--text-mid); }
+  .calendar td.highlight {
+    background: var(--navy); color: white; border-radius: 50%; font-weight: 700;
+  }
+
+  /* ---- LOCATION ---- */
+  .location-section {
+    background: var(--cream);
+    padding: 28px 24px;
+    text-align: center;
+    border-top: 1px solid var(--cream-dark);
+  }
+
+  .rings-icon { font-size: 30px; margin-bottom: 10px; }
+  .lugar-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 28px; color: var(--navy); margin-bottom: 6px; }
+  .venue-info { font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-mid); margin-bottom: 4px; letter-spacing: 1px; }
+  .venue-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--navy); font-weight: 500; margin: 4px 0; }
+
+  .map-container {
+    width: 100%; height: 200px;
+    border-radius: 6px; margin: 16px 0;
+    overflow: hidden;
+    border: 1px solid rgba(44,62,90,0.12);
+  }
+  .map-container iframe { width: 100%; height: 100%; border: none; }
+
+  /* ---- DRESSCODE ---- */
+  .dresscode-section {
+    background: var(--navy);
+    padding: 28px 24px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .dresscode-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.1), transparent 60%);
+  }
+  .dresscode-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: var(--white); margin-bottom: 4px; position: relative; z-index: 1; }
+  .dresscode-sub { font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; position: relative; z-index: 1; }
+  .dress-icons { display: flex; gap: 24px; justify-content: center; margin: 14px 0; position: relative; z-index: 1; }
+  .dress-icon { font-size: 38px; }
+  .dresscode-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.65; position: relative; z-index: 1; padding: 0 10px; }
+
+  /* ---- GIFT ---- */
+  .gift-section { background: var(--white); padding: 28px 24px; border-top: 1px solid var(--cream-dark); }
+
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .section-header-icon { width: 46px; height: 46px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .section-header-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 24px; color: var(--navy); }
+
+  .gift-text { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 14px; font-style: italic; }
+
+  .account-box { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 6px; padding: 14px; margin-bottom: 12px; text-align: left; }
+  .account-box .acc-label { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .account-box .acc-value { font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--navy); font-weight: 500; margin: 2px 0; }
+
+  /* ---- RSVP ---- */
+  .rsvp-section { background: var(--cream); padding: 28px 24px; border-top: 1px solid rgba(44,62,90,0.08); }
+  .rsvp-form { display: flex; flex-direction: column; gap: 12px; }
+  .rsvp-input { border: 1px solid rgba(44,62,90,0.2); border-radius: 4px; padding: 12px 14px; font-family: 'Montserrat', sans-serif; font-size: 12px; background: var(--white); color: var(--text-dark); outline: none; transition: border-color 0.2s; width: 100%; }
+  .rsvp-input:focus { border-color: var(--navy); }
+
+  .rsvp-radio-group { display: flex; gap: 10px; }
+  .rsvp-radio { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1.5px solid rgba(44,62,90,0.2); border-radius: 4px; padding: 12px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 11px; color: var(--text-mid); transition: all 0.2s; background: var(--white); user-select: none; }
+  .rsvp-radio.selected-yes { border-color: var(--navy); background: var(--navy); color: var(--white); }
+  .rsvp-radio.selected-no { border-color: #9b2335; background: #9b2335; color: var(--white); }
+
+  /* ---- BUTTONS ---- */
+  .btn-navy { display: block; width: 100%; background: var(--navy); color: var(--white); border: none; border-radius: 4px; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.1s; text-decoration: none; text-align: center; }
+  .btn-navy:hover { background: var(--navy-light); }
+  .btn-navy:active { transform: scale(0.98); }
+  .btn-navy:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .btn-outline { display: block; width: 100%; background: transparent; color: var(--navy); border: 1.5px solid var(--navy); border-radius: 4px; padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; text-align: center; margin-top: 8px; }
+  .btn-outline:hover { background: var(--navy); color: white; }
+
+  .btn-gold { display: block; width: 100%; background: var(--gold); color: var(--navy); border: none; border-radius: 4px; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; text-align: center; font-weight: 600; }
+  .btn-gold:hover { background: var(--gold-light); }
+
+  /* ---- NO KIDS ---- */
+  .nokids-section { background: var(--navy); padding: 22px 24px; text-align: center; }
+  .nokids-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--gold); margin-bottom: 8px; }
+  .nokids-text { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(255,255,255,0.8); font-style: italic; line-height: 1.65; }
+
+  /* ---- FOOTER ---- */
+  .footer-section { background: var(--cream); padding: 30px 24px; text-align: center; }
+  .footer-thanks { font-family: 'Playfair Display', serif; font-style: italic; font-size: 30px; color: var(--navy); margin-bottom: 6px; }
+  .footer-sub { font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+
+  /* ---- DIVIDER ---- */
+  .divider { display: flex; align-items: center; gap: 10px; margin: 0 auto 18px; width: 80%; }
+  .divider-line { flex: 1; height: 1px; background: rgba(44,62,90,0.15); }
+  .divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+  /* ---- TOAST ---- */
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--navy); color: white; padding: 12px 24px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; z-index: 9999; white-space: nowrap; pointer-events: none; }
+  .toast.show { opacity: 1; }
+
+  /* ---- MODAL ---- */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.active { display: flex; }
+  .modal-box { background: var(--cream); border-radius: 8px; padding: 32px 24px; width: 100%; max-width: 320px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .modal-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 24px; color: var(--navy); margin-bottom: 12px; }
+  .modal-text { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--text-mid); font-style: italic; line-height: 1.65; margin-bottom: 22px; }
+  .modal-close { background: var(--navy); color: white; border: none; border-radius: 4px; padding: 12px 28px; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; }
+
+  /* Animations */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .cover > * { animation: fadeInUp 0.7s ease both; }
+  .cover > *:nth-child(2) { animation-delay: 0.15s; }
+  .cover > *:nth-child(3) { animation-delay: 0.3s; }
+  .cover > *:nth-child(4) { animation-delay: 0.45s; }
+  .cover > *:nth-child(5) { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+
+<div class="phone-wrap">
+
+  <!-- ===== PORTADA ===== -->
+  <div class="cover">
+    <!-- Floral SVG top-left -->
+    <svg class="floral-deco top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#8fa8c8" stroke-width="1.2">
+        <circle cx="60" cy="60" r="22" fill="#6a8ab0" opacity="0.22"/>
+        <circle cx="92" cy="38" r="15" fill="#6a8ab0" opacity="0.18"/>
+        <circle cx="38" cy="92" r="17" fill="#6a8ab0" opacity="0.18"/>
+        <path d="M60,60 Q82,18 125,38" stroke-width="1.4"/>
+        <path d="M60,60 Q18,72 28,112" stroke-width="1.4"/>
+        <path d="M92,38 Q132,28 155,58" stroke-width="1"/>
+        <circle cx="155" cy="58" r="10" fill="#5a7a9a" opacity="0.18"/>
+        <circle cx="28" cy="112" r="9" fill="#5a7a9a" opacity="0.18"/>
+        <ellipse cx="72" cy="28" rx="8" ry="13" fill="#7a9ab8" opacity="0.18" transform="rotate(-20 72 28)"/>
+      </g>
+      <g fill="white" opacity="0.12">
+        <circle cx="55" cy="55" r="7"/>
+        <circle cx="87" cy="33" r="5"/>
+        <circle cx="36" cy="88" r="4"/>
+      </g>
+    </svg>
+    <!-- Floral SVG bottom-right -->
+    <svg class="floral-deco bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#8fa8c8" stroke-width="1.2">
+        <circle cx="60" cy="60" r="22" fill="#6a8ab0" opacity="0.22"/>
+        <circle cx="92" cy="38" r="15" fill="#6a8ab0" opacity="0.18"/>
+        <circle cx="38" cy="92" r="17" fill="#6a8ab0" opacity="0.18"/>
+        <path d="M60,60 Q82,18 125,38" stroke-width="1.4"/>
+        <path d="M60,60 Q18,72 28,112" stroke-width="1.4"/>
+        <circle cx="28" cy="112" r="9" fill="#5a7a9a" opacity="0.18"/>
+      </g>
+      <g fill="white" opacity="0.12">
+        <circle cx="55" cy="55" r="7"/>
+        <circle cx="87" cy="33" r="5"/>
+      </g>
+    </svg>
+
+    <div class="names">
+      <div class="name">Felipe</div>
+      <span class="ampersand">&amp;</span>
+      <div class="name">Michelle</div>
+    </div>
+
+    <div class="cover-date">10 · 09 · 2027</div>
+    <div class="initials-badge">FM</div>
+    <div class="nos-casamos">¡Nos Casamos!</div>
+  </div>
+
+  <!-- ===== FOTO & VERSO ===== -->
+  <div class="photo-section">
+    <div class="photo-frame">
+      <!-- Reemplaza el bloque de abajo con: <img src="tu-foto.jpg" alt="Felipe y Michelle"> -->
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="10" width="36" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="24" cy="22" r="7" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M6 32 L14 24 L22 30 L30 22 L42 32" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <p>Vuestra foto aquí</p>
+      </div>
+    </div>
+    <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    <p class="verse-text">
+      "Lo que Dios unió, ningún hombre lo separe. El amor todo lo sufre, todo lo cree, todo lo espera, todo lo soporta."
+    </p>
+    <span class="verse-ref">1 Corintios 13:7</span>
+  </div>
+
+  <!-- ===== CUENTA REGRESIVA ===== -->
+  <div class="countdown-section">
+    <div class="section-label">Septiembre</div>
+    <div class="big-date-row">
+      <span class="day-label">Viernes</span>
+      <div class="big-date">10</div>
+      <span class="day-label">2027</span>
+    </div>
+
+    <div class="faltan-label">Faltan</div>
+    <div class="countdown-timer">
+      <div class="timer-unit"><div class="num" id="days">--</div><span class="unit-label">Días</span></div>
+      <div class="timer-sep">:</div>
+      <div class="timer-unit"><div class="num" id="hours">--</div><span class="unit-label">Horas</span></div>
+      <div class="timer-sep">:</div>
+      <div class="timer-unit"><div class="num" id="mins">--</div><span class="unit-label">Minutos</span></div>
+      <div class="timer-sep">:</div>
+      <div class="timer-unit"><div class="num" id="secs">--</div><span class="unit-label">Segundos</span></div>
+    </div>
+
+    <div class="gran-dia">El Gran Día · Septiembre 2027</div>
+    <table class="calendar">
+      <tr><th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th></tr>
+      <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+      <tr><td>8</td><td>9</td><td class="highlight">10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+      <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+      <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+      <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <!-- ===== LUGAR ===== -->
+  <div class="location-section">
+    <div class="rings-icon">💍</div>
+    <div class="lugar-title">Lugar</div>
+    <div class="venue-info">7:00 PM</div>
+    <!-- ✏️ EDITA: Cambia el nombre del salón -->
+    <div class="venue-name">Nombre del Salón</div>
+    <div class="venue-info" style="font-size:11px;margin-top:2px;">Santiago, Chile</div>
+
+    <!-- ✏️ EDITA: Reemplaza la URL del iframe con el embed de Google Maps de tu salón -->
+    <!-- Para obtener el embed: Google Maps > tu lugar > Compartir > Insertar un mapa > Copiar HTML -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.595!2d-70.6483!3d-33.4569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSantiago+Chile!5e0!3m2!1ses!2scl!4v1234567890"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <a class="btn-navy"
+       href="https://www.google.com/maps/search/Santiago+Chile"
+       target="_blank" rel="noopener">
+      📍 Ver Ubicación en Maps
+    </a>
+  </div>
+
+  <!-- ===== CÓDIGO DE VESTIMENTA ===== -->
+  <div class="dresscode-section">
+    <div class="dresscode-title">Código de Vestimenta</div>
+    <div class="dresscode-sub">Elegante</div>
+    <div class="dress-icons">
+      <span class="dress-icon">👗</span>
+      <span class="dress-icon">🤵</span>
+    </div>
+    <p class="dresscode-note">
+      Con cariño les pedimos evitar los colores blanco y tonos similares. ¡Ayúdennos a lucir espectaculares ese día!
+    </p>
+  </div>
+
+  <!-- ===== REGALO ===== -->
+  <div class="gift-section">
+    <div class="section-header">
+      <div class="section-header-icon">🎁</div>
+      <div class="section-header-title">Sugerencia de Regalo</div>
+    </div>
+    <p class="gift-text">
+      El mejor regalo es tu presencia, pero si deseas dejarnos un detalle con mucho amor, aquí te dejamos las opciones:
+    </p>
+
+    <!-- ✏️ EDITA: Cambia los datos bancarios reales aquí -->
+    <div class="account-box" id="account-data">
+      <div class="acc-label">Transferencia Bancaria</div>
+      <div class="acc-value">Banco: TU BANCO</div>
+      <div class="acc-value">Cuenta Corriente: 000-000-000</div>
+      <div class="acc-value">RUT: 12.345.678-9</div>
+      <div class="acc-value">Nombre: Felipe Apellido</div>
+      <div class="acc-value">Email: correo@ejemplo.com</div>
+    </div>
+
+    <button class="btn-gold" onclick="copyAccount()">📋 Copiar Datos de Cuenta</button>
+
+    <!-- ✏️ EDITA: Agrega el link real de tu lista de novios (Falabella, Paris, etc.) -->
+    <a class="btn-outline"
+       href="https://www.falabella.com/falabella-cl/"
+       target="_blank" rel="noopener">
+      🛍 Ver Lista de Novios
+    </a>
+  </div>
+
+  <!-- ===== CONFIRMACIÓN DE ASISTENCIA ===== -->
+  <div class="rsvp-section">
+    <div class="section-header" style="margin-bottom:20px;">
+      <div class="section-header-icon">💌</div>
+      <div class="section-header-title">Confirmación</div>
+    </div>
+
+    <div class="rsvp-form">
+      <input class="rsvp-input" type="text" placeholder="Tu nombre completo *" id="rsvp-name" maxlength="100">
+
+      <div style="font-family:'Montserrat';font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:2px;">
+        ¿Podrás asistir?
+      </div>
+      <div class="rsvp-radio-group">
+        <div class="rsvp-radio" id="yes-btn" onclick="selectRSVP('yes')">
+          ✓ &nbsp;¡Allí estaré!
+        </div>
+        <div class="rsvp-radio" id="no-btn" onclick="selectRSVP('no')">
+          ✗ &nbsp;No podré ir
+        </div>
+      </div>
+
+      <button class="btn-navy" id="submit-btn" onclick="submitRSVP()">
+        Confirmar Asistencia
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== SIN NIÑOS ===== -->
+  <div class="nokids-section">
+    <div class="nokids-title">Sin Niños</div>
+    <p class="nokids-text">
+      Es nuestra noche especial. Con todo el amor del mundo, esta celebración será solo para adultos. ¡Aprovechen la noche libre! 🥂
+    </p>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer-section">
+    <svg viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:18px;opacity:0.3">
+      <g stroke="#2c3e5a" fill="none" stroke-width="1">
+        <circle cx="38" cy="30" r="12" fill="#2c3e5a" opacity="0.25"/>
+        <circle cx="62" cy="20" r="9" fill="#2c3e5a" opacity="0.18"/>
+        <circle cx="18" cy="45" r="8" fill="#2c3e5a" opacity="0.18"/>
+        <path d="M38,30 Q58,10 88,22" stroke-width="1.2"/>
+        <path d="M38,30 Q14,40 18,58" stroke-width="1.2"/>
+        <circle cx="262" cy="30" r="12" fill="#2c3e5a" opacity="0.25"/>
+        <circle cx="238" cy="20" r="9" fill="#2c3e5a" opacity="0.18"/>
+        <circle cx="282" cy="45" r="8" fill="#2c3e5a" opacity="0.18"/>
+        <path d="M262,30 Q242,10 212,22" stroke-width="1.2"/>
+        <path d="M262,30 Q286,40 282,58" stroke-width="1.2"/>
+      </g>
+    </svg>
+    <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    <div style="font-family:'Montserrat';font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">
+      Esperamos contar con su presencia
+    </div>
+    <div class="footer-thanks">¡Muchas Gracias!</div>
+    <div style="margin-top:14px;font-family:'Cormorant Garamond';font-style:italic;font-size:17px;color:var(--navy);opacity:0.6">
+      Felipe &amp; Michelle · 10.09.2027
+    </div>
+  </div>
+
+</div><!-- end phone-wrap -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Modal de confirmación -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-text" id="modal-text"></div>
+    <button class="modal-close" onclick="closeModal()">Cerrar</button>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // ✏️  CONFIGURACIÓN — SÓLO EDITA ESTA SECCIÓN
+  // ============================================================
+  const GOOGLE_SCRIPT_URL = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
+  // Ejemplo: "https://script.google.com/macros/s/AKfy.../exec"
+
+  const CUENTA_DATOS = `Banco: TU BANCO
+Cuenta Corriente: 000-000-000
+RUT: 12.345.678-9
+Nombre: Felipe Apellido
+Email: correo@ejemplo.com`;
+  // ============================================================
+
+  // --- Cuenta regresiva ---
+  function updateCountdown() {
+    const wedding = new Date('2027-09-10T19:00:00');
+    const now = new Date();
+    const diff = wedding - now;
+    if (diff <= 0) {
+      ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').textContent  = String(d).padStart(2,'0');
+    document.getElementById('hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('secs').textContent  = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // --- RSVP selección ---
+  let rsvpChoice = null;
+
+  function selectRSVP(choice) {
+    rsvpChoice = choice;
+    document.getElementById('yes-btn').className = 'rsvp-radio' + (choice === 'yes' ? ' selected-yes' : '');
+    document.getElementById('no-btn').className  = 'rsvp-radio' + (choice === 'no'  ? ' selected-no'  : '');
+  }
+
+  // --- Enviar RSVP a Google Sheets ---
+  async function submitRSVP() {
+    const name = document.getElementById('rsvp-name').value.trim();
+
+    if (!name) { showToast('Por favor ingresa tu nombre 😊'); return; }
+    if (!rsvpChoice) { showToast('¿Podrás asistir? Selecciona una opción'); return; }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const asistencia = rsvpChoice === 'yes' ? 'Sí, asistiré ✓' : 'No podré ir ✗';
+    const fecha = new Date().toLocaleString('es-CL');
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre: name, asistencia, fecha })
+      });
+
+      // Mostrar modal de éxito
+      const title = document.getElementById('modal-title');
+      const text  = document.getElementById('modal-text');
+      if (rsvpChoice === 'yes') {
+        title.textContent = '¡Perfecto! 🥂';
+        text.textContent  = `¡Gracias ${name}! Estamos muy felices de contar contigo. ¡Te esperamos el 10 de Septiembre!`;
+      } else {
+        title.textContent = 'Lo entendemos 💙';
+        text.textContent  = `Gracias ${name} por avisarnos. ¡Te extrañaremos! Estarás en nuestros corazones ese día.`;
+      }
+      document.getElementById('modal').classList.add('active');
+
+      // Limpiar formulario
+      document.getElementById('rsvp-name').value = '';
+      rsvpChoice = null;
+      document.getElementById('yes-btn').className = 'rsvp-radio';
+      document.getElementById('no-btn').className  = 'rsvp-radio';
+
+    } catch (err) {
+      showToast('Hubo un error. Intenta de nuevo 😢');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Confirmar Asistencia';
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+
+  // --- Copiar cuenta ---
+  function copyAccount() {
+    navigator.clipboard.writeText(CUENTA_DATOS)
+      .then(() => showToast('¡Datos copiados al portapapeles! 📋'))
+      .catch(() => showToast('Copia los datos manualmente 😊'));
+  }
+
+  // --- Toast ---
+  let toastTimer;
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+</script>
+</body>
+</html>
