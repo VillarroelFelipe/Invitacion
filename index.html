@@ -314,11 +314,107 @@
   .cover > *:nth-child(3) { animation-delay: 0.3s; }
   .cover > *:nth-child(4) { animation-delay: 0.45s; }
   .cover > *:nth-child(5) { animation-delay: 0.6s; }
+
+  /* ---- SOBRE / INTRO ---- */
+  #intro-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(145deg, #1a2535 0%, #2c3e5a 50%, #1a2535 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.8s ease;
+  }
+  #intro-screen.hide { opacity: 0; pointer-events: none; }
+
+  .petal {
+    position: absolute; width: 8px; height: 12px;
+    background: rgba(201,168,76,0.25);
+    border-radius: 50% 0 50% 0;
+    animation: floatPetal linear infinite;
+    pointer-events: none;
+  }
+  @keyframes floatPetal {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  .envelope-wrap { position: relative; width: 220px; height: 160px; margin-bottom: 40px; perspective: 800px; }
+  .env-body { position: absolute; inset: 0; background: linear-gradient(160deg,#f5f0e8,#ede6d6); border-radius: 4px 4px 8px 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3); }
+  .env-bottom { position: absolute; bottom:0; left:0; right:0; height:80px; overflow:hidden; }
+  .env-bottom::before { content:''; position:absolute; bottom:0; left:0; border-left:110px solid transparent; border-right:110px solid transparent; border-bottom:80px solid #ddd5c0; }
+  .env-left { position:absolute; left:0; top:0; bottom:0; width:50%; background:linear-gradient(to right,#e8e2d4,transparent); clip-path:polygon(0 0,100% 50%,0 100%); opacity:0.5; }
+  .env-right { position:absolute; right:0; top:0; bottom:0; width:50%; background:linear-gradient(to left,#e0d8c8,transparent); clip-path:polygon(100% 0,0 50%,100% 100%); opacity:0.5; }
+
+  .env-flap { position:absolute; top:0; left:0; right:0; height:90px; transform-origin:top center; transform-style:preserve-3d; transition:transform 0.9s cubic-bezier(0.4,0,0.2,1); z-index:10; }
+  .env-flap::before { content:''; position:absolute; top:0; left:0; border-left:110px solid transparent; border-right:110px solid transparent; border-top:90px solid #c9bfa8; }
+  .env-flap::after  { content:''; position:absolute; top:0; left:0; border-left:110px solid transparent; border-right:110px solid transparent; border-top:88px solid #ddd5c0; }
+
+  .wax-seal-intro { position:absolute; top:50px; left:50%; transform:translateX(-50%); width:48px; height:48px; background:radial-gradient(circle at 38% 35%,#e0c070,#c9a84c); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:#2c3e5a; box-shadow:0 3px 10px rgba(0,0,0,0.4); z-index:20; transition:opacity 0.4s ease, transform 0.4s ease; }
+
+  .env-card { position:absolute; bottom:10px; left:10px; right:10px; height:130px; background:linear-gradient(160deg,#f5f0e8,#fefefe); border-radius:3px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.2); transform:translateY(0px); transition:transform 1s cubic-bezier(0.4,0,0.2,1) 0.3s; z-index:5; }
+  .env-card-names { font-family:'Playfair Display',serif; font-style:italic; font-size:15px; color:#2c3e5a; text-align:center; line-height:1.3; opacity:0; transition:opacity 0.5s ease 0.8s; }
+  .env-card-line { width:40px; height:1px; background:#c9a84c; margin:6px auto; opacity:0; transition:opacity 0.5s ease 0.9s; }
+  .env-card-date { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; color:#c9a84c; opacity:0; transition:opacity 0.5s ease 1s; }
+
+  .envelope-wrap.open .env-flap { transform: rotateX(-180deg); }
+  .envelope-wrap.open .wax-seal-intro { opacity:0; transform:translateX(-50%) scale(0.5); }
+  .envelope-wrap.open .env-card { transform:translateY(-100px); }
+  .envelope-wrap.open .env-card-names,
+  .envelope-wrap.open .env-card-line,
+  .envelope-wrap.open .env-card-date { opacity:1; }
+
+  .intro-text { text-align:center; color:rgba(255,255,255,0.9); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; letter-spacing:1px; margin-bottom:10px; animation:pulse 2s ease-in-out infinite; }
+  .intro-subtext { font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; animation:pulse 2s ease-in-out infinite 0.3s; }
+  @keyframes pulse { 0%,100%{opacity:0.7;} 50%{opacity:1;} }
+
+  .music-note { position:absolute; font-size:18px; animation:floatNote 3s ease-in-out infinite; opacity:0.5; }
+  @keyframes floatNote { 0%,100%{transform:translateY(0) rotate(-10deg);opacity:0.3;} 50%{transform:translateY(-15px) rotate(10deg);opacity:0.7;} }
+
 </style>
 </head>
 <body>
 
-<div class="phone-wrap">
+<!-- PANTALLA DE SOBRE -->
+<div id="intro-screen" onclick="abrirInvitacion()">
+  <div class="petal" style="left:10%;animation-duration:6s;animation-delay:0s;"></div>
+  <div class="petal" style="left:25%;animation-duration:8s;animation-delay:1s;width:6px;height:9px;"></div>
+  <div class="petal" style="left:45%;animation-duration:7s;animation-delay:2s;"></div>
+  <div class="petal" style="left:65%;animation-duration:9s;animation-delay:0.5s;width:5px;height:8px;"></div>
+  <div class="petal" style="left:80%;animation-duration:6.5s;animation-delay:1.5s;"></div>
+  <div class="petal" style="left:90%;animation-duration:7.5s;animation-delay:3s;width:7px;height:10px;"></div>
+  <div class="petal" style="left:35%;animation-duration:8.5s;animation-delay:4s;"></div>
+  <div class="petal" style="left:55%;animation-duration:6s;animation-delay:2.5s;width:5px;height:7px;"></div>
+
+  <div class="music-note" style="top:15%;left:12%;animation-delay:0s;">&#9835;</div>
+  <div class="music-note" style="top:20%;right:14%;animation-delay:1s;">&#9836;</div>
+  <div class="music-note" style="top:75%;left:8%;animation-delay:2s;font-size:14px;">&#9833;</div>
+  <div class="music-note" style="top:70%;right:10%;animation-delay:0.5s;font-size:22px;">&#9834;</div>
+
+  <div class="envelope-wrap" id="envelope">
+    <div class="env-body"></div>
+    <div class="env-bottom"></div>
+    <div class="env-left"></div>
+    <div class="env-right"></div>
+    <div class="env-card">
+      <div class="env-card-names">Felipe<br>&amp;<br>Michelle</div>
+      <div class="env-card-line"></div>
+      <div class="env-card-date">10 &middot; 09 &middot; 2027</div>
+    </div>
+    <div class="env-flap"></div>
+    <div class="wax-seal-intro">FM</div>
+  </div>
+
+  <div class="intro-text">Tienes una invitaci&oacute;n especial</div>
+  <div class="intro-subtext">&#10022; Toca para abrir &#10022;</div>
+
+  <iframe id="yt-player"
+    src="https://www.youtube.com/embed/vGJTaP6anOU?autoplay=0&controls=0&loop=1&playlist=vGJTaP6anOU&enablejsapi=1"
+    style="display:none;" allow="autoplay" title="musica"></iframe>
+</div>
+
+<div class="phone-wrap" id="invitacion" style="opacity:0;transition:opacity 1s ease;">
 
   <!-- ===== PORTADA ===== -->
   <div class="cover">
@@ -667,6 +763,31 @@ Email: correo@ejemplo.com`;
     toast.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
+  // --- Sobre animado ---
+  let yaAbierto = false;
+  function abrirInvitacion() {
+    if (yaAbierto) return;
+    yaAbierto = true;
+
+    // 1. Abrir el sobre
+    document.getElementById('envelope').classList.add('open');
+
+    // 2. Iniciar música cambiando el src del iframe con autoplay
+    const yt = document.getElementById('yt-player');
+    yt.src = 'https://www.youtube.com/embed/vGJTaP6anOU?autoplay=1&controls=0&loop=1&playlist=vGJTaP6anOU&mute=0';
+
+    // 3. Después de la animación, mostrar la invitación
+    setTimeout(() => {
+      const intro = document.getElementById('intro-screen');
+      const inv   = document.getElementById('invitacion');
+      intro.classList.add('hide');
+      inv.style.opacity = '1';
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 900);
+    }, 1800);
   }
 </script>
 </body>
