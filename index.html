@@ -409,9 +409,9 @@
   <div class="intro-text">Tienes una invitaci&oacute;n especial</div>
   <div class="intro-subtext">&#10022; Toca para abrir &#10022;</div>
 
-  <iframe id="yt-player"
-    src="https://www.youtube.com/embed/vGJTaP6anOU?autoplay=0&controls=0&loop=1&playlist=vGJTaP6anOU&enablejsapi=1"
-    style="display:none;" allow="autoplay" title="musica"></iframe>
+  <audio id="bg-music" loop preload="auto">
+    <source src="elvis.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
 <div class="phone-wrap" id="invitacion" style="opacity:0;transition:opacity 1s ease;">
@@ -774,9 +774,10 @@ Email: correo@ejemplo.com`;
     // 1. Abrir el sobre
     document.getElementById('envelope').classList.add('open');
 
-    // 2. Iniciar música cambiando el src del iframe con autoplay
-    const yt = document.getElementById('yt-player');
-    yt.src = 'https://www.youtube.com/embed/vGJTaP6anOU?autoplay=1&controls=0&loop=1&playlist=vGJTaP6anOU&mute=0';
+    // 2. Iniciar música
+    const audio = document.getElementById('bg-music');
+    audio.volume = 0.6;
+    audio.play().catch(() => {});
 
     // 3. Después de la animación, mostrar la invitación
     setTimeout(() => {
